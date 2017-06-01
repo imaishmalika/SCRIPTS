@@ -1,0 +1,6 @@
+cls
+$a = "C:\Users\cnayar\Documents\Visual Studio 2017\Projects\WebApplication2\WebApplication2.sln"
+$msbuild= "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\msbuild.exe"
+Invoke-Expression $msbuild $a
+
+Start-Process -FilePath "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\msbuild.exe" -ArgumentList $a | Write-Host

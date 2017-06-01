@@ -1,0 +1,37 @@
+version: "3"
+services:
+  apache:
+    image: kaushik575/apache:v2.4.6
+    restart: always
+    cap_add:
+      - SYS_ADMIN
+    ports:
+      - 80
+    networks:
+      - back-tier
+    volumes:
+      - /run
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    tty: true
+    stdin_open: true
+    labels:
+       webserver.type: "Apache Webserver"
+  haproxy:
+    image: dockercloud/haproxy
+    restart: always
+    cap_add:
+      - SYS_ADMIN
+    ports:
+      - 80:80
+    links:
+      - apache
+    depends_on:
+      - apache
+    networks:
+      - back-tier
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+networks:
+  back-tier:
+    driver: bridge
