@@ -1,0 +1,25 @@
+ENV CATALINA_HOME /opt/tomcat
+ENV PATH $CATALINA_HOME/bin:$PATH
+RUN mkdir -p "$CATALINA_HOME"
+WORKDIR $CATALINA_HOME
+
+RUN sudo groupadd tomcat
+RUN mkdir tomcat8
+RUN sudo useradd -s /bin/bash -g tomcat -d "/opt/tomcat" tomcat8
+RUN yum update && yum install -y openssh-server && openjdk-8-jdk
+RUN addgroup tomcat && adduser -d /opt/tomcat --shell "/bin/bash"  --gecos "" tomcat8
+RUN mkdir /root/.ssh && chmod 700 /root/.ssh && chown 700 tomcat8:tomcat /root/.ssh
+COPY id_rsa.pub /root/.ssh 
+COPY id_rsa /root/.ssh
+RUN chmod 600 /root/.ssh/id_rsa && chmod 644 /root/.ssh/id_rsa.pub && chown tomcat8:tomcat /root/.ssh/id_rsa*
+RUN set -x wget http://apache.mirrors.ionfish.org/tomcat/tomcat-8/v8.0.43/bin/apache-tomcat-8.0.43.tar.gz
+RUN set -x tar -xvzf apache-tomcat-8.0.43.tar.gz -C "/opt/tomcat"
+RUN cd /opt/tomcat/apache-tomcat-8.0.43/
+RUN sudo chgrp -R tomcat /opt/tomcat
+RUN sudo chmod -R g+rx conf
+RUN sudo chmod g+r conf/*
+RUN sudo chown -R tomcat8:tomcat work/ temp/ logs/
+RUN sudo chown -R tomcat8:tomcat webapps
+DIR/opt/tomcat/apache-tomcat-8.0.43/bin
+EXPOSE 8080
+CMD ["startup.sh", "run"]

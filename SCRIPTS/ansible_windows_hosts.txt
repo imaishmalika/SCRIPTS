@@ -1,0 +1,11 @@
+[windows]
+dc01.skunkworks.local
+dc02.skunkworks.local
+vcenter.skunkworks.local
+veeamsrv.skunkworks.local
+
+[windows:vars]
+ ansible_user=administrator@SKUNKWORKS.LOCAL
+ ansible_pass=SecretPasswordGoesHere
+ ansible_port=5986
+ ansible_connection=winrm
