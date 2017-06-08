@@ -1,2 +1,0 @@
-msiexec /i C:\Users\pseti1\Downloads\AdvancedLogging64.msi /qb
-Start-Sleep -Seconds 10

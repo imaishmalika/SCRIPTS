@@ -1,4 +1,0 @@
-gci "C:\Users\cnayar\Documents\file.txt" -recurse | 
-ForEach {
-(Get-Content $_ | ForEach {$_ -replace "Ramesh", "Suresh"}) | Out-file "C:\Users\cnayar\Documents\file.txt"
-}
