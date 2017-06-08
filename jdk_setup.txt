@@ -1,0 +1,27 @@
+---
+- hosts: localhost
+  user: root
+  become: yes
+  become_method: sudo
+#  sudo: yes
+# tasks file for jdk
+  vars:
+    download_folder: /opt
+    java_archive: /opt/jdk-8u121-linux-x64.tar.gz
+    java_name: /opt/jdk1.8.0_121
+  tasks:
+
+#    - name: Get JDK
+#      get_url:
+#        headers: 'Cookie:gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept -securebackup-cookie'
+#        url: "http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/jdk-8u121-linux-x64.tar.gz"
+#        dest: /opt/jdk-8u121-linux-x64.tar.gz
+
+#     - name: Extract Jdk
+#       command: "tar zxf {{java_archive}} -C /opt"
+
+     - name: Ownership
+       file: path={{java_name}} state=directory owner=root group=root
+
+     - name: Install in System
+       command: "alternatives --install /usr/bin/java java {{java_name}}/bin/java 1"
