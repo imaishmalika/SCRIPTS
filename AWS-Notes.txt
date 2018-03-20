@@ -1,0 +1,168 @@
+                                         ***********************AMAZON WEB SERVICES**********************************
+										 ****************************************************************************
+																			
+
+  1)REGION : SIMPLY A GEOGRAPHICAL AREA. Each region consists of  2 or more availability zones.
+	 
+  2)AVAILABILITY ZONE : It is simply a data center. It is one or more discrete data centers, each with redundant power,
+                        network and connectivity, housed in separate facilities
+						Availability Zones are geographically isolated so as that no natural calamity affects another availability zone.
+						   
+  3)EDGE LOCATION:    End points for AWS used for caching content. Typically this consists of Cloud-front Amazon's Cloud Delivery Network.
+	                  There are many more edge locations than regions. Currently there are 96 edge locations.
+	
+	                  An edge location is where end users access services located at AWS. 
+	                  They are located in most of the major cities around the world and are specifically used by CloudFront (CDN) 
+					  to distribute content to end user to reduce latency.
+	                  It is like front end for the service we access which are located in AWS cloud
+	***********************************************************************************************************				
+	STORAGE
+	***********************************************************************************************************
+	 1)S3 - Data stored in buckets for quick access
+	 2)EFS - Elastic File System, Network attached storage, store file on FS volume and mount to virtual machines.
+     3)Glacier - For Data archival, cheap storage
+     4)Snowball- Bring large amount of data to Amazon data center, instead of transmitting over broadband/wifi, write physically to Disk and bring it to Amazon data to center.	 
+	 5)Storage Gateway - Virtual Machines installed in data center, which will replicate information in S3.
+	  
+	************************************************************************************************************* 
+	DATABASES
+	*************************************************************************************************************
+	 1)RDS         -   for relational databases, AMazon HAS ITS OWN Relational database-Aurora
+	 2)DYNAMO DB   -   for non-relational databases
+	 3)Elasticache -   To cache database queries searched often.
+	 4)Redshift    -   Data warehousing/Business Intelligence, used for complex queries, like price of  a toaster in APAC region, includes joins and used for 
+	                   time consuming queries
+					   
+	MIGRATION
+	 1)AWS MIGRATION HUB             - A tracking service, Used to track application while migrating to Cloud, HELPS YOU TO KEEP TRACK OF MIGRATIONS
+	 2)APPLICATION DISCOVERY SERVICE - Detects what all applications you have and Used to keep check on required dependencies your application
+	                                   eg. Share point server may have dependency on Domain Controller or SQL server
+									   
+	 3)DATABASE MIGRATION SERVICE    - easy way to migrate on premises databases to AWS
+	
+	VPC - Virtual Data Center, where you can configure firewall, route tables, CIDR ranges, security groups etc.
+	CloudFront- CDN
+	ROUTE 53- AWS DNS SERVICE
+	API GATEWAY - API Gateway can be interface for every call, whatever the request be it will pass through API Gateway.
+	              customer will send request to LB-->LB--to gateway
+                  or if you don't have LB then customer will send the request directly to API gateway.
+
+	DIRECT CONNECT- Dedicated line from office headquarters/data center to AMAZON and will connect to your VPC.
+	
+	DEVELOPER TOOLS
+	
+	CODECOMMIT- Place to store your git repos in AWS, VERSION CONTROL SYSTEM
+	CODEBUILD- Once code is ready, it will compile and run test cases against it and generate a production ready package to be deployed.
+	CODEDEPLOY- Deployment service to automate your application deployments to EC2 instances as well as lambda functions.
+	CODEPIPELINE - Continous Delivery service, to visualise your pipeline and to automate steps to release your package.
+	X-RAY: To Debug and to analyze serverless applications, used to find issues and performance bottlenecks 
+	
+	************************************************************************************************************************
+	MANAGEMENT TOOLS 
+	*************************************************************************************************************************
+	CLOUDWATCH      - Monitoring tool
+	
+	CLOUD-FORMATION(IMP) - Way of scripting Infrastructure(Infrastructure as a Code), use built templates to deploy your Word-press site, Joomla etc
+	CLOUDTRAIL (IMP)- Log service, Used to log changes in AWS, suppose we create any EC2 instance or S3 bucket, it triggers an API call , which CloudTrail captures and shows in Log
+	CONFIG - Manages Config of AWS environment, has point in time snapshots. Used to visualize AWS environment and see the configurations.
+	OpsWorks- Uses Chef and Puppet to automate environment.
+   
+   [NOT REQUIRED]
+	SERVICE CATALOG  - Way of managing catalogs, for governance and compliance
+   [NOT REQUIRED]
+	SYSTEM MANAGERS  - Interface of managing AWS resources, typically EC2, can be used for patch maintenance across 1000 ec2 instances
+	[IMP]
+	TRUSTED ADVISOR  - ADVISOR FOR AWS SERVICES, ADVISE ACROSS OPEN PORTS, SECURITY, TELLS IF WE ARE NOT USING ANY SERVICE EFFICIENTLY, helping you save money.
+	MANAGED SERVICES - AWS MS takes care of your EC2 SERVICES, auto scaling etc
+	
+	MEDIA SERVICES {NOT COMING}
+	
+	ELASTIC TRANSCODER - Convert and resize videos to different formats in such a way that it looks good on IPAD, Android etc.
+	
+	***************************************************************************************************************************
+	MACHINE Learning
+	***************************************************************************************************************************
+	SAGEMAKER - Developers to use deep learning
+	COMPREHEND - Sentiment Analysis, people saying good/bad things about your product
+	DEEP LEARNING - more about neural networks vs MACHINE LEARNING- analysing a set of data
+	POLLY- takes text and converts into speech.
+	REKOGNITION- Upload a picture and it will tell you what objects are there in picture and what is it about, eg dog playing with ball
+	AMAZON TRANSCRIBE - Automatic Speech Recognition, converts it into text.
+	
+	**************************************************************************************************************************
+	ANALYTICS
+	**************************************************************************************************************************
+	ATHENA - Allows you to run SQL queries in S3 buckets, completely serverless.
+	EMR - Processing large amount of data.
+	CloudSearch and ElasticSearch 
+	[IMP]
+	Kinesis - A way to ingest large amount of data in AWS , collating large amounts of data streamed from multiple sources
+	eg Hashtag which a company is using and a million people using hashtag in a day, it ingests the data in AWS
+	
+	DATA PIPELINE - Way of moving data between different AWS services
+	[NOT IMP]
+	GLUE - ETL tool to extract, transform and load your data in format you want. 
+	QUICKSIGHT (NOT IMP)- Business Intelligence tool 
+	
+	*****************************************************************************************************************************
+    SECURITY IDENTITY AND COMPLIANCE 
+	*****************************************************************************************************************************
+	IAM - 
+	COGNITO - Authentication service FOR MOBILE DEVICES which gives temporary access to AWS resources.
+    eg You have built an Iphone app, and u give users access to cognito for storing their data in Dynamo DB, GIVE THEM WRITE ACCESS TO db and it may store, geographic
+        location of users,
+    GUARDDUTY - Monitors for malicious activity in your AWS account
+	*********************************************************************************************************************************
+[QUALYS]INSPECTOR - Agent installed on  Virtual Machines,EC2 instances used to run bunch of tests on it. eg Security vulnerabilities,
+                You can schedule the scan time and it will generate reports of severity on your machine	
+	*********************************************************************************************************************************
+	
+	MACIE - Scan your S3 BUCKET and identifies PII(Personal Identifiable Information) eg Name, Addresses, Social Security Number, Credit Card Information, Passport Details
+	CERTIFICATE MANAGER- Way of managing SSL certificates, get SSL certificates for free if you register domains through Route 53.
+	CloudHSM - Hardware Security Module used to manage encryption keys, public and private keys for authentication of EC2 instances
+	           Billing Rate - $1.20/hr
+	DIRECTORY SERVICE - Way to integrate Microsoft Active Directory Services with AWS.
+	WAF- Web Application Firewall, present in Application layer (Layer 7),  stops cross site scripting, SQL injection, TRACKS USERS OF ANY MALICIOUS ACTIVITY
+	Shield - Get by default ELB,Route 53, for companies suffering from detox attacks
+	ARTIFACT - for audit and compliance, gives portal from where we can  download compliance reports,PCI(payment card industry)reports.
+	
+	**********************************************************************************************************************************
+	MOBILE REPORTS - [NOT COMING]
+	**********************************************************************************************************************************
+	PINPOINT - To send targeted notification to users. eg 20% off of selected hotel to users nearby
+	Device Farm- Way of testing apps on real live devices eg Android phones
+	MOBILE ANALYTICS - Analytics services for mobiles
+	
+	**********************************************************************************************************************************
+	Application Integration
+	**********************************************************************************************************************************
+	SNS- SIMPLE NOTIFICATION SERVICE, notifies about alarms, eg. if billing goes beyond $10, it will shoot an alarm on mobile device.
+	SQS- SIMPLE QUEUE SERVICE, way to decouple infrastructure eg you have a website and someone uploads image to website and he wants some text to overlay on the image
+	     the text will go to SQS,(SQS holds the message in queue) and your EC2 instances will poll the queue and pull the text from SQS.
+	     If EC2 instance dies, the message will revert back to SQS and once another EC2 comes, it will pull the message from SQS.[DECOUPLED ARCHITECTURE]
+	SWF- Simple Workflow Service
+	     Once you order something online, someone will find the product in warehouse, put postage label and mark it as delivery. This flow uses SWF services.
+		 
+	***************************************************************************************************************************************************	 
+    CUSTOMER ENGAGEMENT
+	***************************************************************************************************************************************************
+	SES: Simple EMAIL Service, way of sending large amount of emails, highly customizable,scalable
+	*******************************
+	BUSINESS PRODUCTIVITY
+	*******************************
+	CHIME: USED FOR VIDEO CONFERENCING
+[IMP]WORK DOCS: Like DROPBOX for AWS, secure work documents on cloud
+
+    WORKSPACES : Like VDI, your desktop running on Cloud is accessible from anywhere. 
+	
+	AMAZON-RTOS: OS for your micro-controller
+	GREENGRASS: helps you run local compute messaging,data caching,with machine learning capabilities.
+	
+	
+	Which AWS compute service is specifically designed to assist you in processing large data sets? EMR
+	Which AWS service is used for collating large amounts of data streamed from multiple sources? Kinesis
+	You need to add users to your AWS account and set password rotation policies for these new users. Which AWS service would best fit your requirements? IAM
+	You need a configuration management service that enables your system administrators to configure and operate your web applications using Chef. 
+	Which AWS service would best suit your needs? Opsworks
+	What does AWS region consist of? An independent collection of AWS computing resources in a defined geography.
+	
